@@ -1,0 +1,2 @@
+docker run -it --rm --name my-running-script -v ${pwd}:/usr/src/app -w /usr/src/app node:8 node index.js
+docker run -it --rm --name my-running-script -v ${pwd}:/usr/src/app -w /usr/src/app node:8 node index2.js
