@@ -7,6 +7,8 @@ input = ["acedgfb", "cdfbe", "gcdfa", "fbcad", "dab", "cefabd", "cdfgeb", "eafb"
 // fbcad=3
 // [ 'abcdef', 'bcdefg', 'abcdeg' ]
 // cagedb=0
+//  =6
+//=9
 
 let decoded = {};
 let segments5 = []
