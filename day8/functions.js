@@ -1,6 +1,8 @@
 let decoded = {};
 
-exports.decoded = function(input){
+exports.decodedFunc = decodedFunc;
+
+function decodedFunc(input){
 
     let segments5 = []
     let segments6 = []
@@ -35,8 +37,34 @@ exports.decoded = function(input){
 
 }
 
+exports.calc = calc;
+
+function calc(inputs, outputs) {
+    for(let i=0;i<outputs.length;i++){
+        outputs[i] = outputs[i].split('').sort().join('')
+    }
+    console.log(inputs) 
+    let decodedinputsmap = this.decodedFunc(inputs);
+    let reversedecodedinputsmap = {};
+    Object.keys(decodedinputsmap).forEach((k) =>{
+        //.split('').sort().join('')
+        let val = decodedinputsmap[k].toString();
+        val = val.split('').sort().join('');
+        reversedecodedinputsmap[val] = parseInt(k);
+    });
+    // console.log(decodedinputsmap)
+    console.log(reversedecodedinputsmap)
+    total = "";
+    for(let i=0;i<outputs.length;i++){
+        let val = outputs[i];
 
 
+        total = total + reversedecodedinputsmap[val];
+    }
+    console.log(total)
+    console.log(outputs)
+    return parseInt(total);
+}
 
 exports.workOut352 = workOut352;
 
@@ -57,23 +85,23 @@ function workOut352(segments, decodedin){
     used.push(2)
    }
    if(same(segments[0], decodedin[4]) == 4) {
-    decodedin["5"] = segments[0];
+    decodedin["2"] = segments[0];
     used.push(0)
 
    }
    if(same(segments[1], decodedin[4]) == 4) {
-    decodedin['5'] = segments[1];
+    decodedin['2'] = segments[1];
     used.push(1)
 
    }
    if(same(segments[2], decodedin[4]) == 4) {
-    decodedin['5'] = segments[2];
+    decodedin['2'] = segments[2];
     used.push(2)
 
    }
    left = [0,1,2].filter(x=> used.indexOf(x) === -1);
    last = left[0];
-   decodedin['2'] = segments[last];
+   decodedin['5'] = segments[last];
 
     return decodedin;
 }
@@ -81,40 +109,50 @@ function workOut352(segments, decodedin){
 exports.workOut690 =workOut690;
 
 function workOut690(segments, decodedin){
+    used =[];
     // two differences between 6, 9 and zero
-    if(diffs(decodedin["2"], segments[0]) == 3){
-        decodedin["0"] =  segments[0]
-    }
-    if(diffs(decodedin["2"], segments[1]) == 3){
-        decodedin["0"] =  segments[1]
-    }
-    if(diffs(decodedin["2"], segments[2]) == 3){
-        decodedin["0"] =  segments[2]
-    }
-
-    if(diffs(decodedin["7"], segments[0]) == 5){
+    if(same(decodedin["1"], segments[0]) == 2){
         decodedin["6"] =  segments[0]
+        used.push(0);
     }
-    if(diffs(decodedin["7"], segments[1]) == 5){
+    if(same(decodedin["1"], segments[1]) == 2){
         decodedin["6"] =  segments[1]
+        used.push(1);
     }
-    if(diffs(decodedin["7"], segments[2]) == 5){
+    if(same(decodedin["1"], segments[2]) == 2){
         decodedin["6"] =  segments[2]
+        used.push(2);
     }
 
-    console.log("diff:"+diffs(decodedin["3"], segments[0]))
-    console.log("diff:"+diffs(decodedin["3"], segments[1]))
-    console.log("diff:"+diffs(decodedin["3"], segments[2]))
+    // if(diffs(decodedin["1"], segments[0]) == 1){
+    //     decodedin["6"] =  segments[0]
+    // }
+    // if(diffs(decodedin["1"], segments[1]) == 1){
+    //     decodedin["6"] =  segments[1]
+    // }
+    // if(diffs(decodedin["1"], segments[2]) == 1){
+    //     decodedin["6"] =  segments[2]
+    // }
+
+    // console.log("diff:"+diffs(decodedin["3"], segments[0]))
+    // console.log("diff:"+diffs(decodedin["3"], segments[1]))
+    // console.log("diff:"+diffs(decodedin["3"], segments[2]))
 
     if(diffs(decodedin["3"], segments[0]) == 1){
         decodedin["9"] =  segments[0]
+        used.push(0);
     }
     if(diffs(decodedin["3"], segments[1]) == 1){
         decodedin["9"] =  segments[1]
+        used.push(1);
     }
     if(diffs(decodedin["3"], segments[2]) == 1){
         decodedin["9"] =  segments[2]
+        used.push(6);
     }
+    left = [0,1,2].filter(x=> used.indexOf(x) === -1);
+    last = left[0];
+    decodedin['0'] = segments[last];
     return decodedin;
 }
 

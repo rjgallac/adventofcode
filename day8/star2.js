@@ -1,4 +1,4 @@
-const fs = require('fs')
+const fs = require('fs');
 const decode = require('./functions.js')
 
 fs.readFile('data.txt', 'utf8' , (err, data) => {
@@ -11,32 +11,11 @@ fs.readFile('data.txt', 'utf8' , (err, data) => {
     size = lines.length;
     console.log(size)
     totals = [];
-    for(let i=0; i<1; i++) {
+    for(let i=0; i<lines.length; i++) {
         splitline = lines[i].split(" | ");
         inputs=[...splitline[0].split(" ")]
         outputs=[...splitline[1].split(" ")]
-        for(let i=0;i<outputs.length;i++){
-            outputs[i] = outputs[i].split('').sort().join('')
-        }
-        console.log(inputs) 
-        let decodedinputsmap = decode.decoded(inputs);
-        let reversedecodedinputsmap = {};
-        Object.keys(decodedinputsmap).forEach((k) =>{
-            let val = decodedinputsmap[k].toString();
-            reversedecodedinputsmap[val] = parseInt(k);
-        });
-        // console.log(decodedinputsmap)
-        console.log(reversedecodedinputsmap)
-        total = "";
-        for(let i=0;i<outputs.length;i++){
-            let val = outputs[i];
-
-
-            total = total + reversedecodedinputsmap[val];
-        }
-        console.log(total)
-        totals.push(parseInt(total))
-        console.log(outputs)
+        totals.push(decode.calc(inputs, outputs));
         
     }
     console.log(totals)
