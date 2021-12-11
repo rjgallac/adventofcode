@@ -9,24 +9,27 @@ for(let i=0;i<input.length;i++) {
     console.log("kids:" + (kids));
     console.log("days left:" + ( days - input[i])); 
     // total += kids
-    total += havekids(kids, days - input[i])
+    total += havekid(days - input[i])
 }
 console.log("total:" + (total));
 result = 26
 
-function havekids(kids, daysLeft){
-    let newkids = (Math.floor(daysLeft / 8)) * kids ;
-    console.log("newkids2:"+ newkids)
-    console.log(total)
+function havekid6(daysLeft){
+    if(daysLeft<6){
+        return 0;
+    }
+    const kidstotal6 = havekid8(daysLeft - 6)
+
+    // console.log(kidstotal)
+    return 1 + kidstotal;
+}
+
+function havekid8(daysLeft){
     if(daysLeft<8){
         return 0;
     }
-    let kidstotal =0;
-    for(let i=0;i<newkids;i++){
-        console.log("calling with : " + newkids + ":" + (daysLeft - 8))
-        kidstotal += havekids(newkids, (daysLeft - 8))
+    const kidstotal8 = havekid(daysLeft - 8)
 
-    }
     // console.log(kidstotal)
-    return (newkids + kidstotal);
+    return 1 + kidstotal;
 }

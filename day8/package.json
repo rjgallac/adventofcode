@@ -1,11 +1,12 @@
 {
-  "name": "day6",
+  "name": "day8",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node src/index3.js"
+    "start": "node index.js",
+    "star1": "node star1.js"
   },
   "author": "",
   "license": "ISC"
